@@ -1,4 +1,8 @@
 # Linux_Task_2
+> cron
+```
+0 * * * * /root/Task_two/system_performance_statistics.sh
+```
 > system_performance_statistics.sh
 ```
 #!/bin/bash
