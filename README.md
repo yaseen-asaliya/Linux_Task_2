@@ -248,20 +248,23 @@ chmod a+x set_data_in_html.sh
 * Disks Statistics
 > Disk data collected in files <br>
 ![disks data](https://user-images.githubusercontent.com/59315877/204708067-8772c255-48e6-4b7b-be7a-690d5d2f8ef0.png)
+<br>
 > Disks avarage usage <br>
 ![disk avg](https://user-images.githubusercontent.com/59315877/204708135-b78247e0-27cf-40ad-9e31-396fb3762396.png)
 
 
+* Memory Statistics
+> Memory data collected in files <br>
+![memory data](https://user-images.githubusercontent.com/59315877/204708448-9929dadf-c1fb-4558-bcb9-b4e842c2af6c.png)
+<br>
+> Memory avarage usage <br>
+![memory avg](https://user-images.githubusercontent.com/59315877/204708530-1d8c4ab5-dd79-4d1b-a55e-2223e83fd557.png)
 
-
-
-
-
-
-
-
-
-
-
+* CPU Statistics
+> CPU data collected in files <br>
+![cpu data](https://user-images.githubusercontent.com/59315877/204708654-39d9c1c9-9117-4a02-a879-476d5bfffeef.png)
+<br>
+> CPU avarage usage <br>
+![cpu avg](https://user-images.githubusercontent.com/59315877/204708696-2ff512d4-be9d-401c-870a-72961e9878d4.png)
 
 
