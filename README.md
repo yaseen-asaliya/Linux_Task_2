@@ -148,7 +148,7 @@ create_sub_header(){
 echo "<html><body>" > /var/www/html/htmlfiles/disk.html
 echo "<h3>Disks And Partitations Avarage Usage</h3>" >> /var/www/html/htmlfiles/disk.html
 
-DISK_HEADER_DATA=("Memory" "Used" "Free")
+DISK_HEADER_DATA=("Disk" "Used" "Free")
 DISK_HEADER="$(create_sub_header "${DISK_HEADER_DATA[@]}")"
 
 set_avgs_in_html "disk_usage.txt" $DISK_HEADER >> /var/www/html/htmlfiles/disk.html
