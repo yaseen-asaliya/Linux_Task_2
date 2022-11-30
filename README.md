@@ -17,7 +17,7 @@ echo "$(mpstat)" | awk '{print $0}' > /root/Task_two/CPU_utlization_files/"CPU_u
 
 # Cacluate avg for used and free disks
 
-echo "$(cat disk_usage_files/*.txt)" > all_disk_usage_data.txt
+cat disk_usage_files/*.txt > all_disk_usage_data.txt
 
 awk '{
         sum_used[$1]+=$3;
@@ -29,12 +29,12 @@ awk '{
 
 }' all_disk_usage_data.txt | awk '/\/dev\/*/ {print $0}' > disk_usage.txt
 
-echo "$(rm all_disk_usage_data.txt)"
+rm all_disk_usage_data.txt
 
 
 # Calculate avg for used and free memory
 
-echo "$(cat memory_usage_files/*.txt)" > all_memory_usage_data.txt
+cat memory_usage_files/*.txt > all_memory_usage_data.txt
 
 awk '{
         sum_used[$1]+=$3
@@ -46,13 +46,15 @@ awk '{
 
 }' all_memory_usage_data.txt | awk '!/total*/  {print $0}' > memory_usage.txt
 
-echo "$(rm all_memory_usage_data.txt)"
+rm all_memory_usage_data.txt
 
 
 # Calculate avg for CPU usage
 
-echo "$(cat CPU_utlization_files/*.txt)" > all_CPU_utlization_data.txt
-echo "$(tail -n 1 all_CPU_utlization_data.txt)"  > all_CPU_utlization_data.txt
+cat CPU_utlization_files/*.txt > all_CPU_utlization_data.txt
+
+# To filter requier rows only
+awk '{if($3=="all") print $0}' all_CPU_utlization_data.txt | awk '{print $0}' > filterd_CPU_utlization_data.txt
 
 
 awk '{
@@ -83,9 +85,10 @@ awk '{
 
 
 }
-}' all_CPU_utlization_data.txt | awk '{print $0}' > CPU_usage.txt
+}' filterd_CPU_utlization_data.txt | awk '{print $0}' > CPU_usage.txt
 
-echo "$(rm all_CPU_utlization_data.txt)"
+rm all_CPU_utlization_data.txt
+rm filterd_CPU_utlization_data.txt
 ```
 * Install and enable apache server
 ```
