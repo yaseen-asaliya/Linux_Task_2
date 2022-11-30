@@ -259,6 +259,5 @@ chmod a+x set_data_in_html.sh
 
 
 * CPU Statistics
-> ![cpu data](https://user-images.githubusercontent.com/59315877/204708654-39d9c1c9-9117-4a02-a879-476d5bfffeef.png)
-> ![cpu avg](https://user-images.githubusercontent.com/59315877/204708696-2ff512d4-be9d-401c-870a-72961e9878d4.png)
-
+> ![image](https://user-images.githubusercontent.com/59315877/204911050-1791b8f4-5ec6-4b04-b078-6f64177885b7.png)
+> ![image](https://user-images.githubusercontent.com/59315877/204911228-25f01f47-ba6e-4e5c-9967-ecaa9409ed86.png)
