@@ -247,8 +247,7 @@ chmod a+x set_data_in_html.sh
 
 * Disks Statistics
 > ![disk data](https://user-images.githubusercontent.com/59315877/204708067-8772c255-48e6-4b7b-be7a-690d5d2f8ef0.png)
-> ![disk avg](https://user-images.githubusercontent.com/59315877/204708135-b78247e0-27cf-40ad-9e31-396fb3762396.png)
-
+> ![image](https://user-images.githubusercontent.com/59315877/204897768-a8a898cb-322e-407b-b279-51480b61cb9c.png)
 
 * Memory Statistics
 > ![memory data](https://user-images.githubusercontent.com/59315877/204708448-9929dadf-c1fb-4558-bcb9-b4e842c2af6c.png)
