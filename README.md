@@ -245,3 +245,23 @@ chmod a+x set_data_in_html.sh
 ```
 * And u can fine simple demo for the task from <a href="https://user-images.githubusercontent.com/59315877/203622534-bd45feae-3f43-47d1-be09-3f1dccef68e2.mp4">Here</a>
 
+* Disks Statistics
+> Disk data collected in files
+![disks data](https://user-images.githubusercontent.com/59315877/204708067-8772c255-48e6-4b7b-be7a-690d5d2f8ef0.png)
+> Disks avarage usage
+![disk avg](https://user-images.githubusercontent.com/59315877/204708135-b78247e0-27cf-40ad-9e31-396fb3762396.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
