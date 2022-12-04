@@ -7,7 +7,7 @@
 CURRENT_TIME=$(date "+%Y.%m.%d-%H.%M.%S")
 
 echo "$(df -h)" | awk '{print $0}' > /root/Task_two/disk_usage_files/"Disk_usage--$CURRENT_TIME".txt
-echo "$(free)" | awk '{print $0}' > /root/Task_two/memory_usage_files/"Memory_usage--$CURRENT_TIME".txt
+echo "$(free -m)" | awk '{print $0}' > /root/Task_two/memory_usage_files/"Memory_usage--$CURRENT_TIME".txt
 echo "$(mpstat)" | awk '{print $0}' > /root/Task_two/CPU_utlization_files/"CPU_utlization--$CURRENT_TIME".txt
 ```
 * Calculate Statistics Avarage
