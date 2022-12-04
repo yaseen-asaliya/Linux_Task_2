@@ -101,6 +101,7 @@ rm filterd_CPU_utlization_data.txt
 ```
 #!/bin/bash
 
+
 set_avgs_in_html(){
    echo "$(cat $1)" | awk -F'\t' -v title=$2 '
      BEGIN{
@@ -119,23 +120,26 @@ set_avgs_in_html(){
 '
 }
 
+
+
+
 set_all_data_collected_in_html(){
-   echo "$(cat $1)" | grep -v "^$2" | grep "^$3" | awk -v subhead=$4 '
-   BEGIN{
-     printf "<table>"
-     print subhead
-   }
+   echo "$(cat $1)" | grep -v "^$2" | grep "^$3" | awk -v time=$4 '
    {
      print "<tr>"
+     printf "<td>"
+     printf time
+     printf "</td>"
      for(i=1;i<=NF;i++)
        print "<td>" $i "</td>"
      print "</tr>"
-  }
-  END{
-    print "</table>"
-  }
+   }
 '
 }
+
+
+
+
 
 create_sub_header(){
    arr=("$@")
@@ -147,6 +151,9 @@ create_sub_header(){
 }
 
 
+
+
+
 ########################## Disk Usage ######################################
 echo "<html><body>" > /var/www/html/htmlfiles/disk.html
 echo "<h3>Disks And Partitations Avarage Usage</h3>" >> /var/www/html/htmlfiles/disk.html
@@ -156,22 +163,22 @@ DISK_HEADER="$(create_sub_header "${DISK_HEADER_DATA[@]}")"
 
 set_avgs_in_html "disk_usage.txt" $DISK_HEADER >> /var/www/html/htmlfiles/disk.html
 
-echo "<h3>Files contains data collected each hour</h3>" >> /var/www/html/htmlfiles/disk.html
+echo "<h3>Files contains data collected each hour</h3><table>" >> /var/www/html/htmlfiles/disk.html
+
+DISKS_HEADER_DATA=("Timestamp" "Filesystem" "Size" "Used" "Avail" "Use%" "Mounted-on")
+DISKS_HEADER="$(create_sub_header "${DISKS_HEADER_DATA[@]}")"
+echo $DISKS_HEADER >> /var/www/html/htmlfiles/disk.html
 
 for dir in disk_usage_files/*
 do
     TEMP="${dir##*--}"
-    TIME=$(echo $TEMP | rev | cut -c5- | rev)
-    echo "<h4>File created at : $TIME</h4>" >> /var/www/html/htmlfiles/disk.html
-
-    DISKS_HEADER_DATA=("Filesystem" "Size" "Used" "Avail" "Use%" "Mounted-on")
-    DISKS_HEADER="$(create_sub_header "${DISKS_HEADER_DATA[@]}")"
-    set_all_data_collected_in_html $dir "File*" "/dev/" $DISKS_HEADER >> /var/www/html/htmlfiles/disk.html
+    TIME=$(echo $TEMP | rev | cut -c8- | rev)
+    set_all_data_collected_in_html $dir "File*" "/dev/" $TIME >> /var/www/html/htmlfiles/disk.html
 done
 
-echo "</body></html>" >> /var/www/html/htmlfiles/disk.html
-#######################################################################
+echo "</table></body></html>" >> /var/www/html/htmlfiles/disk.html
 
+##############################################################################
 
 
 ########################## Memory Usage ###############################
@@ -181,19 +188,21 @@ echo "<h3>Memory Avarage Usage</h3>" >> /var/www/html/htmlfiles/memory.html
 MEMORY_HEADER_DATA=("Memory" "Used" "Free")
 MEMORY_HEADER="$(create_sub_header "${DISK_HEADER_DATA[@]}")"
 
+
 set_avgs_in_html "memory_usage.txt" $MEMORY_HEADER >> /var/www/html/htmlfiles/memory.html
 
-echo "<h3>Files contains data collected each hour</h3>" >> /var/www/html/htmlfiles/memory.html
+echo "<h3>Files contains data collected each hour</h3><table>" >> /var/www/html/htmlfiles/memory.html
+
+DATA_HEADER=("Timestamp" "Type" "Total(M)" "Used(M)" "Free(M)" "Shared(M)" "Buff/cache(M)" "Available(M)")
+MEMORY_HEADER="$(create_sub_header "${DATA_HEADER[@]}")"
+echo $MEMORY_HEADER >> /var/www/html/htmlfiles/memory.html
+
 
 for dir in memory_usage_files/*
 do
     TEMP="${dir##*--}"
-    TIME=$(echo $TEMP | rev | cut -c5- | rev)
-    echo "<h4>File created at : $TIME</h4>" >> /var/www/html/htmlfiles/memory.html
-
-    DATA_HEADER=("Type" "Total" "Used" "Free" "Shared" "Buff/cache" "Available")
-    MEMORY_HEADER="$(create_sub_header "${DATA_HEADER[@]}")"
-    set_all_data_collected_in_html $dir " " "" $MEMORY_HEADER >> /var/www/html/htmlfiles/memory.html
+    TIME=$(echo $TEMP | rev | cut -c8- | rev)
+    set_all_data_collected_in_html $dir " " "" $TIME >> /var/www/html/htmlfiles/memory.html
 done
 
 echo "</body></html>" >> /var/www/html/htmlfiles/memory.html
@@ -209,16 +218,19 @@ CPU_HEADER="$(create_sub_header "${CPU_HEADER_DATA[@]}")"
 
 set_avgs_in_html "CPU_usage.txt" $CPU_HEADER >> /var/www/html/htmlfiles/cpu.html
 
-echo "<h3>Files contains data collected each hour</h3>" >> /var/www/html/htmlfiles/cpu.html
+echo "<h3>Files contains data collected each hour</h3><table>" >> /var/www/html/htmlfiles/cpu.html
+CPU_HEADER_DATA=("Timestamp" "CPU" "%usr" "%nice" "%sys" "%iowait" "%irq" "%soft" "%steal" "%guest" "%gnice" "%idle")
+CPU_HEADER="$(create_sub_header "${CPU_HEADER_DATA[@]}")"
+echo $CPU_HEADER >> /var/www/html/htmlfiles/cpu.html
 
 for dir in CPU_utlization_files/*
 do
     TEMP="${dir##*--}"
     TIME=$(echo $TEMP | rev | cut -c5- | rev)
-    echo "<h4>File created at : $TIME</h4>" >> /var/www/html/htmlfiles/cpu.html
+
     echo $(cat $dir | grep -v "^Linux*" | awk 'END{print}' |awk '{for (i = 3; i <= 13;i++) print $i}') > tmp
 
-    set_all_data_collected_in_html "tmp" $tem "Linux*" "" $CPU_HEADER >> /var/www/html/htmlfiles/cpu.html
+    set_all_data_collected_in_html "tmp" $tem "Linux*" "" $TIME >> /var/www/html/htmlfiles/cpu.html
 done
 echo "$(rm tmp)"
 
