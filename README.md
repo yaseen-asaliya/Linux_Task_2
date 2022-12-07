@@ -258,18 +258,3 @@ chmod a+x set_data_in_html.sh
 ```
 0 * * * * /root/Task_two/execution.sh
 ```
-* And u can fine simple demo for the task from <a href="https://user-images.githubusercontent.com/59315877/203622534-bd45feae-3f43-47d1-be09-3f1dccef68e2.mp4">Here</a>
-
-* Disks Statistics
-> ![disk data](https://user-images.githubusercontent.com/59315877/204708067-8772c255-48e6-4b7b-be7a-690d5d2f8ef0.png)
-> ![image](https://user-images.githubusercontent.com/59315877/204897768-a8a898cb-322e-407b-b279-51480b61cb9c.png)
-
-* Memory Statistics
-> ![memory data](https://user-images.githubusercontent.com/59315877/204708448-9929dadf-c1fb-4558-bcb9-b4e842c2af6c.png)
-> ![memory avg](https://user-images.githubusercontent.com/59315877/204708530-1d8c4ab5-dd79-4d1b-a55e-2223e83fd557.png)
-
-
-
-* CPU Statistics
-> ![image](https://user-images.githubusercontent.com/59315877/204911050-1791b8f4-5ec6-4b04-b078-6f64177885b7.png)
-> ![image](https://user-images.githubusercontent.com/59315877/204911228-25f01f47-ba6e-4e5c-9967-ecaa9409ed86.png)
